@@ -13,36 +13,36 @@ services:
         depends_on:
             - redis
         networks:
-            - laravel
+            - soares_net
 
     # nginx
     nginx:
         image: nginx:alpine
         restart: unless-stopped
         ports:
-            - "8000:80"
+            - "8989:80"
         volumes:
             - ./:/var/www
             - ./docker/nginx/:/etc/nginx/conf.d/
         networks:
-            - laravel
+            - soares_net
 
     # db mysql
-    db:
-        image: mysql:8.0
-        platform: linux/x86_64
-        restart: unless-stopped
-        environment:
-            MYSQL_DATABASE: ${DB_DATABASE:-laravel}
-            MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-root}
-            MYSQL_PASSWORD: ${DB_PASSWORD:-userpass}
-            MYSQL_USER: ${DB_USERNAME:-username}
-        volumes:
-            - ./.docker/mysql/dbdata:/var/lib/mysql
-        ports:
-            - "3300:3306"
-        networks:
-            - laravel
+    # db:
+    #     image: mysql:8.0
+    #     platform: linux/x86_64
+    #     restart: unless-stopped
+    #     environment:
+    #         MYSQL_DATABASE: ${DB_DATABASE:-laravel}
+    #         MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-root}
+    #         MYSQL_PASSWORD: ${DB_PASSWORD:-userpass}
+    #         MYSQL_USER: ${DB_USERNAME:-username}
+    #     volumes:
+    #         - ./.docker/mysql/dbdata:/var/lib/mysql
+    #     ports:
+    #         - "3300:3306"
+    #     networks:
+    #         - laravel
 
     # PHPMyAdmin
     phpmyadmin:
@@ -56,14 +56,16 @@ services:
             PMA_PORT: 3306
             MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-root}
         networks:
-            - laravel
+            - soares_net
 
     # redis
     redis:
         image: redis:latest
         networks:
-            - laravel
+            - soares_net
 
 networks:
-    laravel:
-        driver: bridge
+  soares_net:
+    external: true
+    # laravel:
+    #     driver: bridge
