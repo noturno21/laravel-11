@@ -1,4 +1,4 @@
-# Curso GRATUITO de Laravel 11.x
+# Curso GRATUITO de Laravel 11.x     Se a força faltar no braço . Na coragem me sustento
 
 - :movie_camera: [Acesse o Curso](https://academy.especializati.com.br/curso/laravel-11-completo-e-gratuito).
 
