@@ -10,6 +10,8 @@ Route::get('/', function () {
 
 //Por padrão o nome da ação listada se com ->name(url.action);
 Route::get('/users', [UserController::class, 'index'])->name('users.index');
+Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
+Route::post('/users', [UserController::class, 'store'])->name('users.store');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
