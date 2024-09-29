@@ -12,10 +12,10 @@
 </head>
 
 <body class="bg-gray-100 dark:bg-gray-900">
-    @include('layouts.navigation')
-    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-        @yield('content')
-    </div>
+
+    <header>Header default</header>
+    @yield('content')
+    <footer>Footer Default</footer>
 </body>
 
 </html>
