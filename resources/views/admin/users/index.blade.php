@@ -4,37 +4,39 @@
 @section('content')
     <h1>Usuários</h1>
 
-    @if (@session()->has('sucess'))
-        {{ session('sucess')}}
-    @endif
-
     <a href="{{route('users.create')}}">Novo</a>
 
-    <table>
-        <thead>
+    <x-alert />
 
-            <tr>
-                <th>Nome</th>
-                <th>E-mail</th>
-                <th>Ações</th>
-            </tr>
+    <div class="bg-slate-600">
+        <table>
+            <thead>
 
-            <tbody>
-                @forelse ($users as $user )
-                    <tr>
-                        <td>{{$user->name}}</td>
-                        <td>{{$user->email}}</td>
-                        <td>-</td>
-                    </tr>
-                @empty
-                    <tr>
-                        <td colspan="1000">Nenhum usuário</td>
-                    </tr>
-                @endforelse
-            </tbody>
+                <tr>
+                    <th>Nome</th>
+                    <th>E-mail</th>
+                    <th>Ações</th>
+                </tr>
 
-        </thead>
-    </table>
+                <tbody>
+                    @forelse ($users as $user )
+                        <tr>
+                            <td>{{$user->name}}</td>
+                            <td>{{$user->email}}</td>
+                            <td>
+                                <a href="{{ route('user.edit' , $user->id)}}">Edit</a>
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="1000">Nenhum usuário</td>
+                        </tr>
+                    @endforelse
+                </tbody>
+
+            </thead>
+        </table>
     {{ $users->links() }}
+</div>
 
 @endsection

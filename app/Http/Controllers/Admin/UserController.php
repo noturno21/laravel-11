@@ -14,6 +14,7 @@ class UserController extends Controller
     {
         $users = User::paginate(15); //User::all();
 
+        //dd($users);
         return view('admin.users.index',compact('users'));
     }
 
@@ -29,6 +30,15 @@ class UserController extends Controller
         return redirect()
         ->route('users.index')
         ->with('sucess','Um imbecíl adicionado com sucesso');
+    }
+
+    public function edit(string $id)
+    {
+        // $user = User::where('id', '=', $id)->first();
+        // $user = User::where('id', $id)->first(); // first of faill
+        if (!$user = User::find($id)){
+            return redirect('user.index');
+        }
     }
 
     //

@@ -8,6 +8,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('user.edit');
+
 //Por padrão o nome da ação listada se com ->name(url.action);
 Route::get('/users', [UserController::class, 'index'])->name('users.index');
 Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
